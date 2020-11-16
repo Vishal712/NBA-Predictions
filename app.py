@@ -20,5 +20,13 @@ def predictinput():
     model_used = features[-1]
     return render_template('predict.html',prediction='Expected PER will be {} using {}'.format(pred, model_used))
 
+@app.route("/overview")
+def overview():
+    return render_template("overview.html")
+
+@app.route("/data")
+def data():
+    return render_template("data.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
