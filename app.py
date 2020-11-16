@@ -15,10 +15,10 @@ def predict():
 
 @app.route('/predictinput', methods = ['POST'])
 def predictinput():
-    features = [int(x) for x in request.form.values()]
+    features = [x for x in request.form.values()]
     pred = features[0]
-    print(features)
-    return render_template('predict.html',prediction='Expected PER will be {}'.format(pred))
+    model_used = features[-1]
+    return render_template('predict.html',prediction='Expected PER will be {} using {}'.format(pred, model_used))
 
 if __name__ == "__main__":
     app.run(debug=True)

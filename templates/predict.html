@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>Predictions</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="static/assets/css/main.css" />
@@ -21,7 +21,7 @@
 						<div id="header" class="container">
 
 							<!-- Logo -->
-								<h1><a href="index.html" id="logo">Iconic</a></h1>
+								<h1><a href="index.html" id="logo">NBA Efficiency Predictions</a></h1>
 
 							<!-- Nav -->
 							<nav id="nav">
@@ -59,8 +59,16 @@
 												<form action="{{ url_for('predictinput')}}"method="POST">
 													<input type="text" name="age" placeholder="Height" required="required" /><br>
 													  <input type="text" name="sex" placeholder="Weight" required="required" /><br>
-													  <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-												  </form>
+													  <label for="models">Click the box below to change the model to predict with: </label>
+													  <select name = "models" id = "models">
+														  <option value = "Random Forest Classification">Random Forest Classification</option>
+														  <option value = "SVM">SVM</option>
+														  <option value = "Deep Learning">Deep Learning</option>
+													  </select>
+													  <button type="submit" style="height:50px;width:200px">Predict</button>
+
+												</form>
+												
 											  
 												 <br>
 												 <br>
