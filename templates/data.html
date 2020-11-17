@@ -59,12 +59,19 @@
 												
 											</header>
 											<label for="pname">Enter a player to view stats:</label>
-											<input type="text" id="pname" name="pname"><br><br>
-											<button id="filter-btn" type="button" class="btn btn-default">Get Player Data</button>
+											<select name = "categories" id = "categories">
+												<option value = "End of the Bench">End of Bench Player</option>
+												<option value = "Starter">Starter</option>
+												<option value = "All-Star">All-Star</option>
+												<option value = "MVP candidate">MVP Candidate</option>
+											</select>
+											<br>
+											</br>
+											<button id="filter-btn" type="button" class="btn btn-default">Get Averages for Player Type</button>
 											<table>
 												<thead>
 												  <tr>
-													<th id = "chosenPlayer">Player: ______</th>
+													<th id = "chosenPlayer">Number of Players:</th>
 												  </tr>
 												</thead>
 												<tbody>
@@ -81,20 +88,16 @@
 													<td id = "NBARPG">-</td>
 													</tr>
 													<tr>
-													<td id = "BPG">BPG</td>
-													<td id = "NBABPG">-</td>
-													</tr>
-													<tr>
-													<td id = "SPG">SPG</td>
-													<td id = "NBASPG">-</td>
-													</tr>
-													<tr>
 													<td id = "FG">FG%</td>
 													<td id = "NBAFG">-</td>
 													</tr>
 													<tr>
 													<td id = "3P">3P%</td>
 													<td id = "NBA3P">-</td>
+													</tr>
+													<tr>
+													<td id = "FT">FT%</td>
+													<td id = "NBAFT">-</td>
 													</tr>
 												</tbody>
 											  </table>
@@ -131,11 +134,34 @@
 
 				function runForm(){
 					d3.event.preventDefault();
-					var input_tag = d3.select("#pname")
-					var player_filter = input_tag.property("value")
-					console.log(player_filter)
+					var input_selected = d3.select("#categories")
+					var category_filter = input_selected.property("value")
 					d3.json("/NBAData", function(nba_data){
-						console.log(nba_data)
+						var filteredNBA = nba_data.filter(playername => playername.NBA_PER_Range == category_filter)
+						var total_PPG = 0
+						var total_APG = 0
+						var total_RPG = 0
+						var total_FGP = 0
+						var total_3PG = 0
+						var total_FT = 0
+						console.log(filteredNBA)
+						for(i = 0; i < filteredNBA.length; i++){
+							total_PPG = total_PPG + filteredNBA[i].PPG
+							total_APG = total_APG + filteredNBA[i].APG
+							total_RPG = total_RPG + filteredNBA[i].RPG
+							total_FGP = total_FGP + filteredNBA[i]['FG%']
+							total_3PG = total_3PG + filteredNBA[i]['3P%']
+							total_FT = total_FT + filteredNBA[i]['FT%']
+						}
+						number_of_items = filteredNBA.length
+						var PPG = d3.select("#NBAPPG").text(total_PPG/number_of_items)
+						var APG = d3.select("#NBAAPG").text(total_APG/number_of_items)
+						var RPG = d3.select("#NBARPG").text(total_RPG/number_of_items)
+						var FGP = d3.select("#NBAFG").text(total_FGP/number_of_items)
+						var ThreePP = d3.select("#NBA3P").text(total_3PG/number_of_items)
+						var FTP = d3.select("#NBAFT").text(total_FT/number_of_items)
+						var num_of_players = d3.select("#chosenPlayer").text(`${number_of_items} included in category`)
+
 
 
 				})
