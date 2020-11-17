@@ -58,6 +58,8 @@
 												<h2>Nunc fringilla dis natoque amet gravida turpis</h2>
 												
 											</header>
+											<label for="pname">Enter a player to view stats:</label>
+											<input type="text" id="pname" name="pname"><br><br>
 											<button id="filter-btn" type="button" class="btn btn-default">Get Player Data</button>
 											<table>
 												<thead>
@@ -124,9 +126,20 @@
 		<script src="https://d3js.org/d3.v5.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
 			<script>
-				d3.json("/NBAData", function(nba_data){
-					console.log(nba_data)
+				var button = d3.select("#filter-btn");
+				button.on("click", runForm);
+
+				function runForm(){
+					d3.event.preventDefault();
+					var input_tag = d3.select("#pname")
+					var player_filter = input_tag.property("value")
+					console.log(player_filter)
+					d3.json("/NBAData", function(nba_data){
+						console.log(nba_data)
+
+
 				})
+				}	
 			</script>
 			<script src="static/assets/js/jquery.min.js"></script>
 			<script src="static/assets/js/jquery.dropotron.min.js"></script>
