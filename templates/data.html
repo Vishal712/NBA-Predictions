@@ -47,7 +47,7 @@
 							<!-- Main Heading -->
 								<div class="title-heading">
 									<h2>Exploring Data</h2>
-									<p>Looking at the Data per player and trends as a whole</p>
+									<p>Looking at the Data per player type and trends as a whole</p>
 								</div>
 
 							<!-- Main Content -->
@@ -55,10 +55,27 @@
 									<div class="row">
 										<div id="content" class="col-12">
 											<header>
-												<h2>Nunc fringilla dis natoque amet gravida turpis</h2>
+												<h2>Looking at Numeric Data</h2>
 												
 											</header>
-											<label for="pname">Enter a player to view stats:</label>
+											<p>The dataset included contained more than 30,000 rows of data, starting from the 1950s. Each row representing a player's season. In order to make sure that we are looking at PER, however
+												the team decided to only include players from the modern era, from the 1990s. This also helps when it comes to predicting a player, as we use more modern data.
+											</p>
+											<p>Each player contains basic statistics one would find for most NBA games, including Points, Rebounds, Assists, Field Goal Percentage, 3 Point Percentage, Blocks and more,
+												however to predict the efficiency of each player, each player also comes with a stat from the dataset called PER.
+											</p>
+											<h3>PER and how its used in this project</h3>
+											<p>The way data is categorized for this project is based on the calculated PER, or player efficiency rating. This is calculated from multiple different stats, invented by John Hollinger. </p>
+											<p>After calculation, a decimal value is outputted, and represents a culmination of different stats and advanced stats, however, Hollinger, the inventor of the stat, also included some labels for the outputted PER as well:</p>
+											<img src = "../static/images/PERcategories.jpg" alt = "PER Ranges">
+											<figcaption>PER Ranges and their Categories</figcaption>
+
+											<br></br>
+
+											<p>For the purposes of the project, we have decided to reduce these categories to 4, in order to get a more accurate model. Below, you will find an application that allows you to select a category we created, and some average stats
+												that are associated with it. </p>
+											
+											<label for="pname">Click the box to select a player type:</label>
 											<select name = "categories" id = "categories">
 												<option value = "End of the Bench">End of Bench Player</option>
 												<option value = "Starter">Starter</option>
@@ -101,11 +118,13 @@
 													</tr>
 												</tbody>
 											  </table>
-											<p>Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec nonummy magna quis risus. Quisque eleifend. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit. Suspendisse iaculis mauris nec lorem. Donec leo. Vivamus fermentum nibh in augue. Praesent a lacus at urna congue rutrum. Nulla enim eros, porttitor eu, tempus id, varius non, nibh. Duis enim nulla, luctus eu, dapibus lacinia, venenatis id, quam. Vestibulum imperdiet.</p>
-											<p>Proin gravida orci porttitor enim accumsan lacinia. Donec condimentum, urna non molestie semper, ligula enim ornare nibh, quis laoreet eros quam eget ante. Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec nonummy magna quis risus. Quisque eleifend. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit. Suspendisse iaculis mauris nec lorem. Donec leo. Vivamus fermentum nibh in augue. </p>
-											<h3>Feugiat auctor non consequat</h3>
-											<p>Proin gravida orci porttitor enim accumsan lacinia. Donec condimentum, urna non molestie semper, ligula enim ornare nibh, quis laoreet eros quam eget ante. Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec nonummy magna quis risus. Quisque eleifend. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit. Suspendisse iaculis mauris nec lorem. Donec leo. Vivamus fermentum nibh in augue. </p>
-											<p>Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec nonummy magna quis risus. Quisque eleifend. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit. Suspendisse iaculis mauris nec lorem. Donec leo. Vivamus fermentum nibh in augue. Praesent a lacus at urna congue rutrum. Nulla enim eros, porttitor eu, tempus id, varius non, nibh. Duis enim nulla, luctus eu, dapibus lacinia, venenatis id, quam. </p>
+									
+											<p>As seen with the different categories of PER, the most noticeable change is the increase of PPG, or points per game. Also notice how small of a number of players
+												there are when it comes to all star and mvp. For decades now, having an efficiency of a MVP level player is rare and takes a lot to achieve.
+											</p>
+
+											<h2>Looking at trends through graphs/charts</h2>
+											<iframe width="1100px" height="700px" src="https://public.tableau.com/views/CitiBike20192020/PeakHoursbytriptime?:language=en&:display_count=y&:origin=viz_share_link&:showVizHome=no"></iframe>
 										</div>
 									</div>
 								</div>
@@ -160,7 +179,7 @@
 						var FGP = d3.select("#NBAFG").text(total_FGP/number_of_items)
 						var ThreePP = d3.select("#NBA3P").text(total_3PG/number_of_items)
 						var FTP = d3.select("#NBAFT").text(total_FT/number_of_items)
-						var num_of_players = d3.select("#chosenPlayer").text(`${number_of_items} included in category`)
+						var num_of_players = d3.select("#chosenPlayer").text(`${number_of_items} included in ${category_filter}`)
 
 
 
