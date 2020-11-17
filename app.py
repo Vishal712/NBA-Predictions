@@ -31,7 +31,7 @@ def data():
 
 @app.route("/NBAData")
 def NBAData():
-    df = pd.read_csv("https://uci-dataproject3.s3-us-west-1.amazonaws.com/AllTimeNbaSeason4Categories.csv")
+    df = pd.read_csv("https://uci-dataproject3.s3-us-west-1.amazonaws.com/AllTimeNbaSeason4Categories1990.csv")
     json_data = df.to_json(orient="records")
     return json_data
 
