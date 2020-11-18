@@ -1,6 +1,19 @@
 from flask import Flask, request, url_for, render_template, redirect, jsonify
 import pandas as pd
-
+import tensorflow
+import joblib
+from tensorflow import keras
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import classification_report
+from sklearn.svm import SVC 
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder, MinMaxScaler
+RFmodel = joblib.load("Random_Forest_Model.sav")
+SVMmodel = joblib.load("SVM_Model.sav")
+DLmodel = keras.models.load_model("Deep_Learning_Model.h5")
 
 app = Flask(__name__)
 
