@@ -11,6 +11,7 @@ from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
+import numpy as np
 
 labels = {0: 'All-Star', 1: 'End of the Bench', 2: ' MVP Candidate', 3: 'Starter'}
 
@@ -37,8 +38,9 @@ def predictinput():
     deep_predictions = DLmodel.predict_classes(statistics)
     #pred = statistics[0][0]
     pred = deep_predictions[0]
-    if(type(pred) is list):
-        pred = deep_predictions[0]
+    if(np.isscalar(pred)):
+        pred = deep_predictions
+    pred = pred[0]
     model_used = features[-1]
     label = labels[pred]
     return render_template('predict.html',prediction='Expected PER will be {} using {}'.format(label, model_used))
