@@ -39,14 +39,22 @@ def predictinput():
     scaled_stats = scale_input(statistics[0][0])
     scaled_statistics = [[scaled_stats]]
     deep_predictions = DLmodel.predict_classes(scaled_statistics)
-    #pred = statistics[0][0]
     pred = deep_predictions[0]
     if(np.isscalar(pred)):
         pred = deep_predictions
     pred = pred[0]
     model_used = features[-1]
     label = labels[pred]
-    return render_template('predict.html',prediction='Expected PER will be {} using {}'.format(label, model_used))
+    return_text = 'Expected PER will be {} using {}'.format(label, model_used)
+    stats_text = 'for PPG: {}  APG: {}  RPG: {}  SPG: {}  BPG: {}  FG%: {} FT%: {}  3P%: {}'.format(statistics[0][0][0],
+                                                                                                        statistics[0][0][1],
+                                                                                                        statistics[0][0][2],
+                                                                                                        statistics[0][0][3],
+                                                                                                        statistics[0][0][4],
+                                                                                                        statistics[0][0][5],
+                                                                                                        statistics[0][0][6],
+                                                                                                        statistics[0][0][7])
+    return render_template('predict.html',prediction= return_text, inputted = stats_text)
 
 @app.route("/overview")
 def overview():
