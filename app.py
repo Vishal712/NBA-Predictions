@@ -12,6 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 import numpy as np
+from scaling import scale_input
 
 labels = {0: 'All-Star', 1: 'End of the Bench', 2: ' MVP Candidate', 3: 'Starter'}
 
@@ -35,7 +36,9 @@ def predictinput():
     features = [x for x in request.form.values()]
     statistics = [[[float(x) for x in features[:-1]]]]
     print(statistics)
-    deep_predictions = DLmodel.predict_classes(statistics)
+    scaled_stats = scale_input(statistics[0][0])
+    scaled_statistics = [[scaled_stats]]
+    deep_predictions = DLmodel.predict_classes(scaled_statistics)
     #pred = statistics[0][0]
     pred = deep_predictions[0]
     if(np.isscalar(pred)):
