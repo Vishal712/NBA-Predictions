@@ -12,6 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 
+labels = {0: 'All-Star', 1: 'End of the Bench', 2: ' MVP Candidate', 3: 'Starter'}
 
 app = Flask(__name__)
 
@@ -36,8 +37,11 @@ def predictinput():
     deep_predictions = DLmodel.predict_classes(statistics)
     #pred = statistics[0][0]
     pred = deep_predictions[0]
+    if(type(pred) is list):
+        pred = deep_predictions[0]
     model_used = features[-1]
-    return render_template('predict.html',prediction='Expected PER will be {} using {}'.format(pred, model_used))
+    label = labels[pred]
+    return render_template('predict.html',prediction='Expected PER will be {} using {}'.format(label, model_used))
 
 @app.route("/overview")
 def overview():
