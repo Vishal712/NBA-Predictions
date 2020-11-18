@@ -34,17 +34,30 @@ def predictinput():
     SVMmodel = joblib.load("SVM_Model.sav")
     DLmodel = keras.models.load_model("Deep_Learning_Model.h5")
     features = [x for x in request.form.values()]
+    model_used = features[-1]
     statistics = [[[float(x) for x in features[:-1]]]]
     print(statistics)
     scaled_stats = scale_input(statistics[0][0])
     scaled_statistics = [[scaled_stats]]
+    sklearn_scaled = [scaled_stats]
     deep_predictions = DLmodel.predict_classes(scaled_statistics)
-    pred = deep_predictions[0]
-    if(np.isscalar(pred)):
-        pred = deep_predictions
-    pred = pred[0]
-    model_used = features[-1]
-    label = labels[pred]
+    RFpredictions = RFmodel.predict(sklearn_scaled)
+    SVMpredictions = SVMmodel.predict(sklearn_scaled)
+    DPpred = deep_predictions[0]
+    RFpred = RFpredictions[0]
+    SVMpred = SVMpredictions[0]
+    if(model_used == 'Deep Learning'):
+        if(np.isscalar(DPpred)):
+            DPpred = deep_predictions
+        DPpred = DPpred[0]
+        label = labels[DPpred]
+        print("MODEL USED WAS DEEP LEARNING")
+    elif(model_used == 'SVM'):
+        label = SVMpred
+        print("MODEL USED WAS SVM")
+    else:
+        label = RFpred
+        print("MODEL USED WAS RANDOM FOREST")
     return_text = 'Expected PER will be {} using {}'.format(label, model_used)
     stats_text = 'for PPG: {}  APG: {}  RPG: {}  SPG: {}  BPG: {}  FG%: {} FT%: {}  3P%: {}'.format(statistics[0][0][0],
                                                                                                         statistics[0][0][1],
