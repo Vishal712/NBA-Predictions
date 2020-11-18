@@ -11,9 +11,7 @@ from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
-RFmodel = joblib.load("Random_Forest_Model.sav")
-SVMmodel = joblib.load("SVM_Model.sav")
-DLmodel = keras.models.load_model("Deep_Learning_Model.h5")
+
 
 app = Flask(__name__)
 
@@ -29,8 +27,15 @@ def predict():
 
 @app.route('/predictinput', methods = ['POST'])
 def predictinput():
+    RFmodel = joblib.load("Random_Forest_Model.sav")
+    SVMmodel = joblib.load("SVM_Model.sav")
+    DLmodel = keras.models.load_model("Deep_Learning_Model.h5")
     features = [x for x in request.form.values()]
-    pred = features[0]
+    statistics = [[[float(x) for x in features[:-1]]]]
+    print(statistics)
+    deep_predictions = DLmodel.predict_classes(statistics)
+    #pred = statistics[0][0]
+    pred = deep_predictions[0]
     model_used = features[-1]
     return render_template('predict.html',prediction='Expected PER will be {} using {}'.format(pred, model_used))
 
