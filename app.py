@@ -29,6 +29,10 @@ def overview():
 def data():
     return render_template("data.html")
 
+@app.route("/model")
+def model():
+    return render_template("modelOverview.html")
+
 @app.route("/NBAData")
 def NBAData():
     df = pd.read_csv("https://uci-dataproject3.s3-us-west-1.amazonaws.com/AllTimeNbaSeason4Categories1990.csv")
