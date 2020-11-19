@@ -58,16 +58,18 @@ def predictinput():
     else:
         label = RFpred
         print("MODEL USED WAS RANDOM FOREST")
-    return_text = 'Expected PER will be {} using {}'.format(label, model_used)
-    stats_text = 'for PPG: {}  APG: {}  RPG: {}  SPG: {}  BPG: {}  FG%: {} FT%: {}  3P%: {}'.format(statistics[0][0][0],
-                                                                                                        statistics[0][0][1],
-                                                                                                        statistics[0][0][2],
-                                                                                                        statistics[0][0][3],
-                                                                                                        statistics[0][0][4],
-                                                                                                        statistics[0][0][5],
-                                                                                                        statistics[0][0][6],
-                                                                                                        statistics[0][0][7])
-    return render_template('predict.html',prediction= return_text, inputted = stats_text)
+    return_text = '{} using {}'.format(label, model_used)
+    PPGvar = "PPG: {}".format(statistics[0][0][0])
+    APGvar = "APG: {}".format(statistics[0][0][1])
+    RPGvar = "RPG: {}".format(statistics[0][0][2])
+    SPGvar = "SPG: {}".format(statistics[0][0][3])
+    BPGvar = "BPG: {}".format(statistics[0][0][4])
+    FGvar = "FG%: {}".format(statistics[0][0][5])
+    FTvar = "FT%: {}".format(statistics[0][0][6])
+    Threevar = "3P%: {}".format(statistics[0][0][7])
+
+    return render_template('predict.html',prediction= return_text, PPG = PPGvar, APG = APGvar, RPG = RPGvar, SPG = SPGvar, BPG = BPGvar, FG = FGvar,
+                                                                    FT = FTvar, Three = Threevar )
 
 @app.route("/overview")
 def overview():
