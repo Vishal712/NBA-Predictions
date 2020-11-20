@@ -18,7 +18,8 @@ Finally the models are saved as Random_Forest_Model.sav, SVM_Model.sav, and Deep
 
 (/predict) leads to the predict.html predict page. Just so that the user can input data and submit a button
 
-(/predictinput) is where the inputted forms are taken and ran through the models. Then depending on the selected model, a prediction is given. Most of the work here is in the python route. This leads back to the predict.html page with the new parameters.
+(/predictinput) is where the inputted forms are taken and ran through the models. Then depending on the selected model, a prediction is given. Most of the work here is in the python route. This leads back to the predict.html page with the new parameters. To get new parameters we were helped by this page
+found: https://www.kdnuggets.com/2020/05/build-deploy-machine-learning-web-app.html
 
 (/overview) leads to the project overview page in overview.html. Just a general overview of what the project is about and the steps we took.
 
