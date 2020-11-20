@@ -14,7 +14,8 @@ from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 import numpy as np
 from scaling import scale_input
 
-labels = {0: 'All-Star', 1: 'End of the Bench', 2: ' MVP Candidate', 3: 'Starter'}
+labels = {0: 'All-Star', 1: 'Bench Player/Fringe Starter', 2: ' MVP Candidate', 3: 'Starter'}
+sklearnlabels = {'All-Star': 'All-Star', 'MVP candidate': 'MVP Candidate', 'End of the Bench': 'Bench Player/Fringe Starter', 'Starter': 'Starter'}
 
 app = Flask(__name__)
 
@@ -53,10 +54,10 @@ def predictinput():
         label = labels[DPpred]
         print("MODEL USED WAS DEEP LEARNING")
     elif(model_used == 'SVM'):
-        label = SVMpred
+        label = sklearnlabels[SVMpred]
         print("MODEL USED WAS SVM")
     else:
-        label = RFpred
+        label = sklearnlabels[RFpred]
         print("MODEL USED WAS RANDOM FOREST")
     return_text = '{} using {}'.format(label, model_used)
     PPGvar = "PPG: {}".format(statistics[0][0][0])
