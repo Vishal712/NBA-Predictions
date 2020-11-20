@@ -46,7 +46,7 @@
 
 							<!-- Main Heading -->
 								<div class="title-heading">
-									<h2>Model Overviews</h2>
+									<h2>Machine Learning Analysis</h2>
 									<p>Explanation and technical details of Machine Learning models used</p>
 								</div>
 
@@ -55,33 +55,49 @@
 									<div class="row">
 										<div id="content" class="col-12">
 											<header>
-												<h2>Models Used:</h2>
+												<h2>Model Overviews:</h2>
 												<div style="text-align: center;">
 												</div>
-											  
-												 <br>
-												 <br>
-												
-												 
-											   
+							   
 											</header>
 											
-											<p>The project we've chosen is about the NBA, and how specific stats can determine how efficient and impactful
-												someone is in the leage. Throughout the history of the NBA, players have been always able to record massive numbers,
-												and yet aren't considered the same level as the top players, such as Michael Jordan, Patrick Ewing, Kevin Durant. Why is that? What makes a
-												player just a starter, compared to all stars? What about MVP candidates? What kind of stats and production is needed for that?
-											</p>
+											<p> 
+                                            For each of the models listed below we assigned our target value (y) as NBA PER Range. This was not originally part of the dataset, rather created by our team by binning
+                                            specific PER ranges in order to determine the caliber of each player. As mentioned previously, this was inspired by John Hollinger's PER Range which he created in order to
+                                            combine all of the player's contributions into one statistical category. Although there is a specific and complicated formula for this, our model is designed to predict based off the most popular
+                                            statistical categories that most people are familiar with. This includes: PPG, APG, RPG, SPG, BPG, FG%, FT%, 3P%.
+                                            </p>
+                                            
+                                            <h3>Random Forest Model</h3>
 
-											<p>The way we plan on answering these questions is through machine learning, specifically through 3 models. The end goal of these models is to find a way to predict
-												the efficiency and impact of a player based on given stats. And to do this, we used decades of data.
+											<p>
+                                            First model we created was a random forest model for the purpose of seeing how each of the data values impacted our category distribution. After assigning the data and targets, we split the data into two testing samples
+                                            and then scaled the data in using a MinMaxScalar in order to normalize the range of variables that will be pased through the model. If you take a look below, you will see the break down of how each data impacts this particular model
+                                            and what is important to in order for our machine to predict the classifiers of PER Range
+                                            </p>
 
-												This dataset from Kaggle(https://www.kaggle.com/drgilermo/nba-players-stats) contains player data from the 1950s, for each player in each season. By including these stats, we are able 
-												to train 3 different models, and output a classification of PER, or player efficiency rating.
+                                            <img src = "../static/images/weighted_values.JPG">
 
-											</p>
-											<h3>Feugiat auctor non consequat</h3>
-											<p>Proin gravida ligula enim ornare nibh, Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis.  </p>
-											
+                                            <h3>SVM Model</h3>
+                                            
+                                            <p> 
+                                            Using those same target and data values from the random forest model, we applied this to a SVM model in order to see how precise each category can be predicted. After calibrating our SVM model, our team applied
+                                            a hyperparameter tuning component (GridSearchCV) in order to ensure that our model was performing at the highest possible degree. Once the newer model was trained and fit we calculated a classification report and received
+                                            a precision measurement and support variable that demonstrated how well our model could predict each NBA PER Range as well as the the number of units per category respectively.
+                                            </p>
+                                            
+                                            <img src = "../static/images/classification_report.JPG">
+
+                                            <h3>Deep Learning Model</h3>
+                                            
+                                            <p>
+                                            Finally, we created a Deep Learning model in order to test how accurately our machine could predict each category and manage the loss of the model. In order to make sure that our data would be able to pass through our machine,
+                                            this required a label encoder to transform our NBA PER Ranges into a numeric value. After doing so, we passed in our 8 input dimensions and used 100 hidden layers in order to train the model and receive the output layer. 
+                                            Finally, we examined the loss and accuracy of the deep learning model and found that this model had the highest accuracy of 84% out of the three models tested.
+                                            </p>
+
+                                            <img src = "../static/images/DeepLearningModelOverview.jpg">
+
 										</div>
 									</div>
 								</div>
@@ -96,7 +112,7 @@
 
 			<!-- Copyright -->
 				<div id="copyright">
-					Vishal Patel, Stephen Chu, Steve Thorne, Saburo Nakano
+					&copy; Untitled. All rights reserved.
 				</div>
 
 		</div>
